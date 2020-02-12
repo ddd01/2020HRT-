@@ -1,0 +1,38 @@
+fans 36W*2  approx.80W
+water pump  11.5W
+fuel pump   approx. 15w
+
+-----------------------------------------
+pins 
+starter relay       none
+water pump relay    4
+fan relay 			5
+rule relay1         4
+rule relay2         4
+three in one relay  5 (one for ETC plug)
+fuel pump relay     4
+                sum 26
+-----------------------------------------
+-----------------------------------------
+
+Starter Relay(excepted)
+
+water pump relay (Normally open)           
+controller:ECU_5V_output1--Ground     undercontrol:main_power_input--water_pump
+
+fan relay (Normally open)
+controller:ECU_5V_output2--Ground     undercontrol:main_power_input--fan
+
+rule relay1  (Normally close)
+controller:BSPD_in1--BSPD_in2     undercontrol:main_power_input--rule_relay1_out
+
+rule relay2  (Normally close)
+controller:control_board_in1--control_board_in2    undercontrol:rule_relay1_out--rule_relay2_out
+
+Ignition&Injection (Normally close)
+controller:main_power_input--Ground    undercontrol:ign&inj_out--rule_relay2_out
+
+fuel pump relay (Normally close)
+controller:main_power_input--Ground    undercontrol:fuel_pump--rule_relay2_out
+-----------------------------------------
+-----------------------------------------
